@@ -16,14 +16,20 @@ public class agendamento {
 	private String bairro;
 	private String numero;
 	private String complemento;
-	private usuarios contratante;
+	private ArrayList<servicosExecutados> servicosExecutados;
 	
-	public usuarios getContratante() {
-		return contratante;
+	public agendamento(){
+		servicosExecutados = new ArrayList();
 	}
-	public void setContratante(usuarios contratante) {
-		this.contratante = contratante;
+	
+	public ArrayList<servicosExecutados> getServicosExecutados(){
+		return servicosExecutados;
 	}
+	
+	public void setServicosExecutados(servicosExecutados servico){
+		servicosExecutados.add(servico);
+	}
+	
 	public int getIdAgendamento() {
 		return idAgendamento;
 	}

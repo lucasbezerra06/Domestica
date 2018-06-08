@@ -3,6 +3,7 @@ package entidades;
 public class pagamentos {
 	private int idPagamentos;
 	private float valor;
+	
 	public int getIdPagamentos() {
 		return idPagamentos;
 	}

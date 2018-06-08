@@ -19,13 +19,20 @@ public class usuarios {
 	private ArrayList<endereco> enderecos;
 	private ArrayList<pagamentos> pagamentosRealizados;
 	private ArrayList<extrato> extratos;
-	
-	
+	private ArrayList<agendamento> agendamentos;
 	public usuarios(){
 		enderecos = new ArrayList();
 		servicosPrestrados = new ArrayList();
 		pagamentosRealizados = new ArrayList();
 		extratos = new ArrayList();
+		agendamentos = new ArrayList();
+	}
+	
+	public ArrayList<agendamento> getAgendamentos(){
+		return agendamentos;
+	}
+	public void setAgendamentos(agendamento agendamento){
+		this.agendamentos.add(agendamento);
 	}
 	
 	public ArrayList<extrato> getExtratos(){
