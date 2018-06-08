@@ -1,0 +1,172 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<class-diagram version="1.2.2" icons="true" always-add-relationships="false" generalizations="true" realizations="true" 
+  associations="true" dependencies="false" nesting-relationships="true" router="FAN">  
+  <class id="1" language="java" name="entidades.avaliacoes" project="Domesticas" 
+    file="/Domesticas/src/entidades/avaliacoes.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="99" width="104" x="261" y="-147"/>    
+    <display autosize="true" stereotype="false" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="2" language="java" name="entidades.servicos" project="Domesticas" 
+    file="/Domesticas/src/entidades/servicos.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="141" y="939"/>    
+    <display autosize="true" stereotype="false" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="3" language="java" name="entidades.agendamento" project="Domesticas" 
+    file="/Domesticas/src/entidades/agendamento.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="639" width="171" x="491" y="-147"/>    
+    <display autosize="true" stereotype="false" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="4" language="java" name="entidades.extrato" project="Domesticas" 
+    file="/Domesticas/src/entidades/extrato.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="135" width="124" x="571" y="1409"/>    
+    <display autosize="true" stereotype="false" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="5" language="java" name="entidades.endereco" project="Domesticas" 
+    file="/Domesticas/src/entidades/endereco.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="176" y="1402"/>    
+    <display autosize="true" stereotype="false" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="6" language="java" name="entidades.estados" project="Domesticas" 
+    file="/Domesticas/src/entidades/estados.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="174" y="2017"/>    
+    <display autosize="true" stereotype="false" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="7" language="java" name="entidades.pagamentos" project="Domesticas" 
+    file="/Domesticas/src/entidades/pagamentos.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="1020" y="1235"/>    
+    <display autosize="true" stereotype="false" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="8" language="java" name="entidades.cidades" project="Domesticas" 
+    file="/Domesticas/src/entidades/cidades.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="179" y="1792"/>    
+    <display autosize="true" stereotype="false" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="9" language="java" name="entidades.tiposUsuario" project="Domesticas" 
+    file="/Domesticas/src/entidades/tiposUsuario.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="1022" y="970"/>    
+    <display autosize="true" stereotype="false" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="10" language="java" name="entidades.usuarios" project="Domesticas" 
+    file="/Domesticas/src/entidades/usuarios.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="837" width="283" x="491" y="532"/>    
+    <display autosize="true" stereotype="false" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <association id="11">    
+    <end type="SOURCE" refId="5" navigable="false">      
+      <attribute id="12" name="cidade"/>      
+      <multiplicity id="13" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="8" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="14">    
+    <end type="SOURCE" refId="10" navigable="false">      
+      <attribute id="15" name="pagamentosRealizados"/>      
+      <multiplicity id="16" minimum="0" maximum="2147483647"/>    
+    </end>    
+    <end type="TARGET" refId="7" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="17">    
+    <end type="SOURCE" refId="8" navigable="false">      
+      <attribute id="18" name="estado"/>      
+      <multiplicity id="19" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="6" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="20">    
+    <end type="SOURCE" refId="10" navigable="false">      
+      <attribute id="21" name="enderecos"/>      
+      <multiplicity id="22" minimum="0" maximum="2147483647"/>    
+    </end>    
+    <end type="TARGET" refId="5" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="23">    
+    <end type="SOURCE" refId="10" navigable="false">      
+      <attribute id="24" name="TipoUsuario"/>      
+      <multiplicity id="25" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="9" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="26">    
+    <end type="SOURCE" refId="10" navigable="false">      
+      <attribute id="27" name="extratos"/>      
+      <multiplicity id="28" minimum="0" maximum="2147483647"/>    
+    </end>    
+    <end type="TARGET" refId="4" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="29">    
+    <end type="SOURCE" refId="10" navigable="false">      
+      <attribute id="30" name="servicosPrestrados"/>      
+      <multiplicity id="31" minimum="0" maximum="2147483647"/>    
+    </end>    
+    <end type="TARGET" refId="2" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="32">    
+    <end type="SOURCE" refId="2" navigable="false">      
+      <attribute id="33" name="prestrador"/>      
+      <multiplicity id="34" minimum="0" maximum="2147483647"/>    
+    </end>    
+    <end type="TARGET" refId="10" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="35">    
+    <end type="SOURCE" refId="3" navigable="false">      
+      <attribute id="36" name="contratante"/>      
+      <multiplicity id="37" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="10" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <classifier-display autosize="true" stereotype="false" package="true" initial-value="false" signature="true" 
+    sort-features="false" accessors="true" visibility="true">    
+    <attributes public="true" package="true" protected="true" private="true" static="true"/>    
+    <operations public="true" package="true" protected="true" private="true" static="true"/>  
+  </classifier-display>  
+  <association-display labels="true" multiplicity="true"/>
+</class-diagram>
