@@ -1,10 +1,12 @@
-package entidades;
+package model;
 
 import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.Set;
 
-public class usuarios {
+public class Usuarios {
 	private int idUsuarios;
-	private tiposUsuario TipoUsuario;
+	private TiposUsuario TipoUsuario;
 	private String cpf;
 	private String rg;
 	private String nome;
@@ -15,65 +17,81 @@ public class usuarios {
 	private String agencia;
 	private String banco;
 	private int codBanco;
-	private ArrayList<servicos> servicosPrestrados;
-	private ArrayList<endereco> enderecos;
-	private ArrayList<pagamentos> pagamentosRealizados;
-	private ArrayList<extrato> extratos;
-	private ArrayList<agendamento> agendamentos;
-	private ArrayList<avaliacoes> avaliacoes;
-	public usuarios(){
+	Set<Servicos> servicosPrestrados;
+//	private ArrayList<Servicos> servicosPrestrados;
+	private ArrayList<Endereco> enderecos;
+	private ArrayList<Pagamentos> pagamentosRealizados;
+	private ArrayList<Extrato> extratos;
+	private ArrayList<Agendamento> agendamentos;
+	private ArrayList<Avaliacoes> avaliacoes;
+	public Usuarios(){
 		enderecos = new ArrayList();
-		servicosPrestrados = new ArrayList();
+		servicosPrestrados = new HashSet();
+//		servicosPrestrados = new ArrayList();
 		pagamentosRealizados = new ArrayList();
 		extratos = new ArrayList();
 		agendamentos = new ArrayList();
 		avaliacoes = new ArrayList();
 	}
 	
-	public ArrayList<avaliacoes> getAvaliacoes(){
+	
+	
+	public Set<Servicos> getServicosPrestrados() {
+		return servicosPrestrados;
+	}
+
+
+
+	public void setServicosPrestrados(Servicos servico) {
+		servicosPrestrados.add(servico);
+	}
+
+
+
+	public ArrayList<Avaliacoes> getAvaliacoes(){
 		return avaliacoes;
 	}
-	public void setAvaliacoes(avaliacoes avaliacao){
+	public void setAvaliacoes(Avaliacoes avaliacao){
 		this.avaliacoes.add(avaliacao);
 	}
 	
 	
-	public ArrayList<agendamento> getAgendamentos(){
+	public ArrayList<Agendamento> getAgendamentos(){
 		return agendamentos;
 	}
-	public void setAgendamentos(agendamento agendamento){
+	public void setAgendamentos(Agendamento agendamento){
 		this.agendamentos.add(agendamento);
 	}
 	
-	public ArrayList<extrato> getExtratos(){
+	public ArrayList<Extrato> getExtratos(){
 		return extratos;
 	}
-	public void setExtratos(extrato extratos){
+	public void setExtratos(Extrato extratos){
 		this.extratos.add(extratos);
 	}
 	
 	
-	public ArrayList<pagamentos> getPagamentosRealizados(){
+	public ArrayList<Pagamentos> getPagamentosRealizados(){
 		return pagamentosRealizados;
 	}
-	public void setPagamentosRealizados(pagamentos pagamento){
+	public void setPagamentosRealizados(Pagamentos pagamento){
 		pagamentosRealizados.add(pagamento);
 	}
 	
-	public ArrayList<servicos> getServicosPrestrados(){
+	/*public ArrayList<Servicos> getServicosPrestrados(){
 		return servicosPrestrados;
 	}
 	
-	public void setServicosPrestrados(servicos servico){
+	public void setServicosPrestrados(Servicos servico){
 		servicosPrestrados.add(servico);
-	}
+	}*/
 	
-	public ArrayList<endereco> getEnderecos() {
+	public ArrayList<Endereco> getEnderecos() {
 		return enderecos;
 	}
 
 
-	public void setEnderecos(endereco endereco ) {
+	public void setEnderecos(Endereco endereco ) {
 		enderecos.add(endereco);
 	}
 
@@ -84,10 +102,10 @@ public class usuarios {
 	public void setIdUsuarios(int idUsuarios) {
 		this.idUsuarios = idUsuarios;
 	}
-	public tiposUsuario getTipoUsuario() {
+	public TiposUsuario getTipoUsuario() {
 		return TipoUsuario;
 	}
-	public void setTipoUsuario(tiposUsuario idTipoUsuario) {
+	public void setTipoUsuario(TiposUsuario idTipoUsuario) {
 		this.TipoUsuario = idTipoUsuario;
 	}
 	public String getCpf() {

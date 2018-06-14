@@ -1,7 +1,7 @@
-package entidades;
+package model;
 
 
-public class estados {
+public class Estados {
 	private int idEstados;
 	private String uf;
 	private String nome;

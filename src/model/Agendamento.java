@@ -1,11 +1,11 @@
-package entidades;
+package model;
 
 import java.util.ArrayList;
 import java.util.Date;
 
 import javax.print.attribute.standard.DateTimeAtCompleted;
 
-public class agendamento {
+public class Agendamento {
 	private int idAgendamento;
 	private Date data;
 	private Date horaInicio;
@@ -16,17 +16,17 @@ public class agendamento {
 	private String bairro;
 	private String numero;
 	private String complemento;
-	private ArrayList<servicosExecutados> servicosExecutados;
+	private ArrayList<ServicosExecutados> servicosExecutados;
 	
-	public agendamento(){
+	public Agendamento(){
 		servicosExecutados = new ArrayList();
 	}
 	
-	public ArrayList<servicosExecutados> getServicosExecutados(){
+	public ArrayList<ServicosExecutados> getServicosExecutados(){
 		return servicosExecutados;
 	}
 	
-	public void setServicosExecutados(servicosExecutados servico){
+	public void setServicosExecutados(ServicosExecutados servico){
 		servicosExecutados.add(servico);
 	}
 	

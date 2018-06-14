@@ -1,8 +1,8 @@
-package entidades;
+package model;
 
 import java.util.Date;
 
-public class extrato {
+public class Extrato {
 	private int idExtrato;
 	private float valor;
 	private Date data;

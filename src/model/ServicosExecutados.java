@@ -1,6 +1,6 @@
-package entidades;
+package model;
 
-public class servicosExecutados {
+public class ServicosExecutados {
 	int idServicosExecutados;
 	String nomeServico;
 	String descricaoServico;

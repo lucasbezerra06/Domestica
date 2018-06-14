@@ -1,16 +1,13 @@
-package entidades;
+package model;
 
 import java.util.ArrayList;
 
-public class servicos {
+public class Servicos {
+
 	private int idServicos;
 	private String nome;
 	private String descricao;
 	private float valor;
-	private ArrayList<usuarios> prestrador ;
-	public servicos(){
-		prestrador = new ArrayList();
-	}
 	public int getIdServicos() {
 		return idServicos;
 	}
@@ -34,5 +31,11 @@ public class servicos {
 	}
 	public void setValor(float valor) {
 		this.valor = valor;
+	}
+	
+	@Override
+	public String toString() {
+		String servico = "idServico = "+idServicos+"\nNome = "+nome+"\nDescrição = "+descricao+"\nValor = "+valor;
+		return servico;
 	}
 }

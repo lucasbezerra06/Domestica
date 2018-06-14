@@ -1,12 +1,12 @@
-package entidades;
-public class endereco {
+package model;
+public class Endereco {
 	private int idEnderecos;
 	private String cep;
 	private String logradouro;
 	private String bairro;
-	private String numero;
+	private int numero;
 	private String complemento;
-	private cidades cidade;
+	private Cidades cidade;
 	
 	public int getIdEnderecos() {
 		return idEnderecos;
@@ -32,10 +32,10 @@ public class endereco {
 	public void setBairro(String bairro) {
 		this.bairro = bairro;
 	}
-	public String getNumero() {
+	public int getNumero() {
 		return numero;
 	}
-	public void setNumero(String numero) {
+	public void setNumero(int numero) {
 		this.numero = numero;
 	}
 	public String getComplemento() {
@@ -44,10 +44,10 @@ public class endereco {
 	public void setComplemento(String complemento) {
 		this.complemento = complemento;
 	}
-	public cidades getCidade() {
+	public Cidades getCidade() {
 		return cidade;
 	}
-	public void setCidade(cidades cidade) {
+	public void setCidade(Cidades cidade) {
 		this.cidade = cidade;
 	}
 	

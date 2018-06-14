@@ -1,7 +1,7 @@
-package entidades;
+package model;
 
 
-public class tiposUsuario {
+public class TiposUsuario {
 	private int idTipoUsuario;
 	private String tipoDescricao;
 	private int permissao;

@@ -1,10 +1,10 @@
-package entidades;
+package model;
 
-public class cidades {
+public class Cidades {
 	private int idCidades;
 	private String uf;
 	private String nome;
-	private estados estado;
+	private Estados estado;
 	
 	public int getIdCidades() {
 		return idCidades;
@@ -24,10 +24,10 @@ public class cidades {
 	public void setNome(String nome) {
 		this.nome = nome;
 	}
-	public estados getEstado() {
+	public Estados getEstado() {
 		return estado;
 	}
-	public void setEstado(estados estado) {
+	public void setEstado(Estados estado) {
 		this.estado = estado;
 	}
 

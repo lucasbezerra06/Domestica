@@ -2,11 +2,11 @@ package DataAccess;
 
 import java.sql.SQLException;
 
-import entidades.usuarios;
+import model.Usuarios;
 
 public interface usuariosDAO {
-		public usuarios pesquisar(int idUsuario) throws SQLException;
-		public void inserir(usuarios usuario) throws SQLException;
+		public Usuarios pesquisar(int idUsuario) throws SQLException;
+		public void inserir(Usuarios usuario) throws SQLException;
 		public void remover(int idUsuario) throws SQLException;
 
 }

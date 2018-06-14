@@ -1,6 +1,6 @@
-package entidades;
+package model;
 
-public class pagamentos {
+public class Pagamentos {
 	private int idPagamentos;
 	private float valor;
 	
