@@ -35,7 +35,7 @@ public class Servicos {
 	
 	@Override
 	public String toString() {
-		String servico = "idServico = "+idServicos+"\nNome = "+nome+"\nDescrição = "+descricao+"\nValor = "+valor;
+		String servico = nome;
 		return servico;
 	}
 }

@@ -30,5 +30,12 @@ public class Cidades {
 	public void setEstado(Estados estado) {
 		this.estado = estado;
 	}
+	@Override
+	public String toString() {
+		// TODO Auto-generated method stub
+		return nome;
+	}
+	
+	
 
 }

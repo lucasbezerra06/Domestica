@@ -9,17 +9,21 @@ import javax.swing.GroupLayout.Alignment;
 import javax.swing.JScrollPane;
 import javax.swing.LayoutStyle.ComponentPlacement;
 
+import controller.ControllServicos;
 import model.Servicos;
+import model.Usuarios;
 
 import javax.swing.JTextArea;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
+import java.sql.SQLException;
 import java.awt.event.ActionEvent;
 
 public class CadastrarServicos extends JPanel {
 	private JTextField txtServico;
 	private JTextField txtValor;
 	private JTextArea textADescricao;
+	private ControllServicos control;
 
 	/**
 	 * Create the panel.
@@ -92,16 +96,25 @@ public class CadastrarServicos extends JPanel {
 		setLayout(groupLayout);
 
 	}
+	public Servicos boundaryToEntity() {
+		Servicos servico = new Servicos();
+		servico.setNome(txtServico.getText());
+		servico.setDescricao(textADescricao.getText());
+		servico.setValor(Integer.parseInt(txtValor.getText()));
+		return servico;
+	}
+	
 	private class ConfirmAction implements ActionListener{
 
 		@Override
 		public void actionPerformed(ActionEvent e) {
-			Servicos servico = new Servicos();
-			servico.setNome(txtServico.getText());
-			servico.setDescricao(textADescricao.getText());
-			servico.setValor(Integer.parseInt(txtValor.getText()));
-			
-			System.out.println(servico.toString());
+			control = new ControllServicos();
+			try {
+				control.Inserir(boundaryToEntity());
+			} catch (SQLException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
 			
 		}
 		

@@ -24,6 +24,12 @@ public class TiposUsuario {
 	public void setPermissao(int permissao) {
 		this.permissao = permissao;
 	}
+	@Override
+	public String toString() {
+		// TODO Auto-generated method stub
+		return tipoDescricao;
+	}
+	
 	
 
 }

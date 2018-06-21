@@ -10,9 +10,10 @@ public class Usuarios {
 	private String cpf;
 	private String rg;
 	private String nome;
+	private String senha;
 	private float saldo;
 	private int mascaraCartaoCred;
-	private int tokenCartaoCred;
+	private String tokenCartaoCred;
 	private String contaCorrente;
 	private String agencia;
 	private String banco;
@@ -138,10 +139,10 @@ public class Usuarios {
 	public void setMascaraCartaoCred(int mascaraCartaoCred) {
 		this.mascaraCartaoCred = mascaraCartaoCred;
 	}
-	public int getTokenCartaoCred() {
+	public String getTokenCartaoCred() {
 		return tokenCartaoCred;
 	}
-	public void setTokenCartaoCred(int tokenCartaoCred) {
+	public void setTokenCartaoCred(String tokenCartaoCred) {
 		this.tokenCartaoCred = tokenCartaoCred;
 	}
 	public String getContaCorrente() {
@@ -167,6 +168,18 @@ public class Usuarios {
 	}
 	public void setCodBanco(int codBanco) {
 		this.codBanco = codBanco;
+	}
+
+
+
+	public String getSenha() {
+		return senha;
+	}
+
+
+
+	public void setSenha(String senha) {
+		this.senha = senha;
 	}
 	
 	

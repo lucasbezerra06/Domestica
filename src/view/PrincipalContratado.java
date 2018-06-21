@@ -112,7 +112,7 @@ public class PrincipalContratado extends JFrame implements ActionListener{
 		String cmd = e.getActionCommand();
 		System.out.println(cmd);
 		if(cmd.equals("Definir")){
-			trocarPainel("Lista de Serviços", new ListaServicos());
+			trocarPainel("Lista de Serviços", new ListaServicos(usuario));
 		}
 		else if(cmd.equals("Agendados")) {
 			trocarPainel("Serviços Agendados", new ServicosAgendados());

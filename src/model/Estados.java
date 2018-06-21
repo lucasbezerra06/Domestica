@@ -24,4 +24,11 @@ public class Estados {
 	public void setNome(String nome) {
 		this.nome = nome;
 	}
+	@Override
+	public String toString() {
+		// TODO Auto-generated method stub
+		return nome;
+	}
+	
+	
 }

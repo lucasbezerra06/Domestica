@@ -6,17 +6,34 @@ import javax.swing.JLabel;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.ItemEvent;
+import java.awt.event.ItemListener;
+import java.sql.SQLException;
 
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
 import javax.swing.JTextField;
 import javax.swing.LayoutStyle.ComponentPlacement;
 
+import DataAccesInter.CidadesDAO;
+import DataAccesInter.EstadoDAO;
+import DataAccesInter.TipoUsuarioDAO;
+import DataAccesInter.UsuariosDAO;
+import DataAccess.CidadesDAOImpl;
+import DataAccess.EstadosDAOImpl;
+import DataAccess.TipoUsuarioDAOImpl;
+import DataAccess.UsuarioDAOImpl;
+import controller.ControllUsuario;
+import javafx.scene.control.ComboBox;
+import model.Cidades;
 import model.Endereco;
+import model.Estados;
+import model.TiposUsuario;
 import model.Usuarios;
 
 import javax.swing.JComboBox;
 import javax.swing.JButton;
+import javax.swing.JPasswordField;
 
 public class ManterUsuario extends JPanel{
 	private JTextField txtNome;
@@ -32,8 +49,13 @@ public class ManterUsuario extends JPanel{
 	private JTextField txtBairro;
 	private JTextField txtNumero;
 	private JTextField txtCompl;
+	JComboBox <TiposUsuario>cmbTipo;
+	JComboBox<Cidades> cmbCidade;
+	JComboBox<Estados> cmbEstado;
+	private ControllUsuario control;
+	private JPasswordField pswSenha;
 	public ManterUsuario() {
-		
+		control = new ControllUsuario();
 		JLabel lblNome = new JLabel("Nome");
 		
 		txtNome = new JTextField();
@@ -76,8 +98,8 @@ public class ManterUsuario extends JPanel{
 		
 		JLabel lblTipoDeUsuario = new JLabel("Tipo de Usuario");
 		
-		JComboBox cmbTipo = new JComboBox();
-		
+		cmbTipo = new JComboBox();
+		tipoComboBox();
 		JLabel lblCep = new JLabel("CEP");
 		
 		txtCep = new JTextField();
@@ -105,15 +127,34 @@ public class ManterUsuario extends JPanel{
 		
 		JLabel lblCidade = new JLabel("Cidade");
 		
-		JComboBox cmbCidade = new JComboBox();
-		
+		cmbCidade = new JComboBox<Cidades>();
 		JLabel lblEstado = new JLabel("Estado");
 		
-		JComboBox cmbEstado = new JComboBox();
+		cmbEstado = new JComboBox<Estados>();
+		estadoComboBox();
+		cmbEstado.addItemListener(new ItemListener() {
+			
+			@Override
+			public void itemStateChanged(ItemEvent arg0) {
+				if (arg0.getStateChange() == ItemEvent.SELECTED) {
+					for(int i = 0; i<cmbCidade.getItemCount();i++) {
+						cmbCidade.removeItemAt(i);
+					}
+					Estados estado = new Estados();
+					estado = (Estados) cmbEstado.getSelectedItem();
+					cidadeComboBox(estado.getIdEstados());
+				}
+				
+			}
+		});
 		
 		JButton btnSalvar = new JButton("Salvar");
-		
+		btnSalvar.addActionListener(new SalvarAction());
 		JButton btnLimpar = new JButton("Limpar");
+		
+		JLabel lblSenha = new JLabel("Senha");
+		
+		pswSenha = new JPasswordField();
 		GroupLayout groupLayout = new GroupLayout(this);
 		groupLayout.setHorizontalGroup(
 			groupLayout.createParallelGroup(Alignment.TRAILING)
@@ -123,21 +164,21 @@ public class ManterUsuario extends JPanel{
 						.addGroup(groupLayout.createSequentialGroup()
 							.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
 								.addComponent(lblNome)
+								.addComponent(txtNome, GroupLayout.PREFERRED_SIZE, 204, GroupLayout.PREFERRED_SIZE)
+								.addGroup(groupLayout.createParallelGroup(Alignment.LEADING, false)
+									.addComponent(cmbTipo, 0, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+									.addComponent(lblTipoDeUsuario))
 								.addComponent(lblCpf)
 								.addComponent(lblRg)
-								.addComponent(txtNome, GroupLayout.PREFERRED_SIZE, 204, GroupLayout.PREFERRED_SIZE)
+								.addComponent(lblSaldo)
+								.addComponent(lblContaCorrente)
+								.addComponent(lblSenha)
 								.addGroup(groupLayout.createParallelGroup(Alignment.TRAILING, false)
-									.addComponent(txtAgencia, Alignment.LEADING)
+									.addComponent(pswSenha, Alignment.LEADING)
 									.addComponent(txtConta, Alignment.LEADING)
 									.addComponent(txtSaldo, Alignment.LEADING)
 									.addComponent(txtRG, Alignment.LEADING)
-									.addComponent(txtCPF, Alignment.LEADING, GroupLayout.PREFERRED_SIZE, 127, GroupLayout.PREFERRED_SIZE))
-								.addComponent(lblSaldo)
-								.addComponent(lblContaCorrente)
-								.addComponent(lblAgencia)
-								.addGroup(groupLayout.createParallelGroup(Alignment.LEADING, false)
-									.addComponent(cmbTipo, 0, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-									.addComponent(lblTipoDeUsuario)))
+									.addComponent(txtCPF, Alignment.LEADING, GroupLayout.DEFAULT_SIZE, 127, Short.MAX_VALUE)))
 							.addGap(69)
 							.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
 								.addComponent(cmbEstado, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
@@ -158,6 +199,9 @@ public class ManterUsuario extends JPanel{
 										.addComponent(txtBairro, Alignment.LEADING, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
 									.addGap(56)
 									.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
+										.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
+											.addComponent(txtAgencia)
+											.addComponent(lblAgencia))
 										.addComponent(lblCodBanco)
 										.addComponent(lblBanco)
 										.addComponent(txtBanco, GroupLayout.PREFERRED_SIZE, 105, GroupLayout.PREFERRED_SIZE)
@@ -166,13 +210,13 @@ public class ManterUsuario extends JPanel{
 							.addComponent(btnSalvar)
 							.addPreferredGap(ComponentPlacement.RELATED)
 							.addComponent(btnLimpar)))
-					.addGap(135))
+					.addGap(113))
 		);
 		groupLayout.setVerticalGroup(
 			groupLayout.createParallelGroup(Alignment.LEADING)
 				.addGroup(groupLayout.createSequentialGroup()
 					.addContainerGap()
-					.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
+					.addGroup(groupLayout.createParallelGroup(Alignment.LEADING, false)
 						.addGroup(groupLayout.createSequentialGroup()
 							.addComponent(lblTipoDeUsuario)
 							.addPreferredGap(ComponentPlacement.RELATED)
@@ -181,7 +225,11 @@ public class ManterUsuario extends JPanel{
 							.addComponent(lblNome)
 							.addPreferredGap(ComponentPlacement.RELATED)
 							.addComponent(txtNome, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+							.addPreferredGap(ComponentPlacement.UNRELATED)
+							.addComponent(lblSenha)
 							.addPreferredGap(ComponentPlacement.RELATED)
+							.addComponent(pswSenha, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+							.addPreferredGap(ComponentPlacement.RELATED, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
 							.addComponent(lblCpf)
 							.addPreferredGap(ComponentPlacement.RELATED)
 							.addComponent(txtCPF, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
@@ -196,18 +244,21 @@ public class ManterUsuario extends JPanel{
 							.addPreferredGap(ComponentPlacement.RELATED)
 							.addComponent(lblContaCorrente)
 							.addPreferredGap(ComponentPlacement.RELATED)
-							.addComponent(txtConta, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-							.addPreferredGap(ComponentPlacement.RELATED)
-							.addComponent(lblAgencia)
-							.addPreferredGap(ComponentPlacement.RELATED)
-							.addComponent(txtAgencia, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-							.addGap(36)
-							.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
-								.addComponent(btnSalvar)
-								.addComponent(btnLimpar))
-							.addGap(0, 0, Short.MAX_VALUE))
+							.addComponent(txtConta, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
 						.addGroup(groupLayout.createSequentialGroup()
-							.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
+							.addGroup(groupLayout.createParallelGroup(Alignment.TRAILING)
+								.addGroup(groupLayout.createSequentialGroup()
+									.addComponent(lblAgencia)
+									.addPreferredGap(ComponentPlacement.RELATED)
+									.addComponent(txtAgencia, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+									.addPreferredGap(ComponentPlacement.UNRELATED)
+									.addComponent(lblBanco)
+									.addPreferredGap(ComponentPlacement.RELATED)
+									.addComponent(txtBanco, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+									.addPreferredGap(ComponentPlacement.UNRELATED)
+									.addComponent(lblCodBanco)
+									.addPreferredGap(ComponentPlacement.RELATED)
+									.addComponent(txtCodBan, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
 								.addGroup(groupLayout.createSequentialGroup()
 									.addComponent(lblCep)
 									.addPreferredGap(ComponentPlacement.RELATED)
@@ -219,63 +270,101 @@ public class ManterUsuario extends JPanel{
 									.addPreferredGap(ComponentPlacement.RELATED)
 									.addComponent(lblBairro)
 									.addPreferredGap(ComponentPlacement.UNRELATED)
-									.addComponent(txtBairro, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-									.addPreferredGap(ComponentPlacement.RELATED)
-									.addComponent(lblNmero)
-									.addPreferredGap(ComponentPlacement.RELATED)
-									.addComponent(txtNumero, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-									.addPreferredGap(ComponentPlacement.RELATED)
-									.addComponent(lblComplemento)
-									.addPreferredGap(ComponentPlacement.RELATED)
-									.addComponent(txtCompl, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-									.addPreferredGap(ComponentPlacement.RELATED)
-									.addComponent(lblCidade))
-								.addGroup(groupLayout.createSequentialGroup()
-									.addComponent(lblBanco)
-									.addPreferredGap(ComponentPlacement.RELATED)
-									.addComponent(txtBanco, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-									.addPreferredGap(ComponentPlacement.UNRELATED)
-									.addComponent(lblCodBanco)
-									.addPreferredGap(ComponentPlacement.RELATED)
-									.addComponent(txtCodBan, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)))
+									.addComponent(txtBairro, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)))
+							.addPreferredGap(ComponentPlacement.RELATED)
+							.addComponent(lblNmero)
+							.addPreferredGap(ComponentPlacement.RELATED)
+							.addComponent(txtNumero, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+							.addPreferredGap(ComponentPlacement.RELATED)
+							.addComponent(lblComplemento)
+							.addPreferredGap(ComponentPlacement.RELATED)
+							.addComponent(txtCompl, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+							.addPreferredGap(ComponentPlacement.RELATED)
+							.addComponent(lblCidade)
 							.addPreferredGap(ComponentPlacement.RELATED)
 							.addComponent(cmbCidade, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
 							.addGap(1)
 							.addComponent(lblEstado)
 							.addPreferredGap(ComponentPlacement.RELATED)
 							.addComponent(cmbEstado, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)))
+					.addGap(31)
+					.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
+						.addComponent(btnSalvar)
+						.addComponent(btnLimpar))
 					.addContainerGap())
 		);
 		setLayout(groupLayout);
+	}
+	public void tipoComboBox() {
+		TipoUsuarioDAO tdao = new TipoUsuarioDAOImpl();
+		
+		try {
+			for(TiposUsuario t : tdao.read()) {
+				cmbTipo.addItem(t);
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+	
+	public void cidadeComboBox(int idEstado) {
+		CidadesDAO cdao = new CidadesDAOImpl();
+		try {
+			for(Cidades c : cdao.read(idEstado)) {
+				cmbCidade.addItem(c);
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	
+	}
+	
+	public void estadoComboBox() {
+		try {
+			for(Estados e : control.lerEstado()) {
+				cmbEstado.addItem(e);
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+	
+	public Usuarios boundaryToEntity() {
+		Usuarios usuario = new Usuarios();
+		usuario.setTipoUsuario((TiposUsuario)cmbTipo.getSelectedItem());
+		usuario.setNome(txtNome.getText());
+		usuario.setCpf(txtCPF.getText());
+		usuario.setRg(txtRG.getText());
+		usuario.setSaldo(Float.parseFloat(txtSaldo.getText()));
+		usuario.setContaCorrente(txtConta.getText());
+		usuario.setAgencia(txtAgencia.getText());
+		usuario.setBanco(txtBanco.getText());
+		usuario.setCodBanco(Integer.parseInt(txtCodBan.getText()));			
+		Endereco endereco = new Endereco();
+		endereco.setCep(txtCep.getText());
+		endereco.setLogradouro(txtLogra.getText());
+		endereco.setBairro(txtBairro.getText());
+		endereco.setNumero(Integer.parseInt(txtNumero.getText()));
+		endereco.setComplemento(txtCompl.getText());
+		usuario.setEnderecos(endereco);
+		usuario.setSenha(new String(pswSenha.getPassword()));
+		return usuario;
 	}
 	
 	private class SalvarAction implements ActionListener{
 
 		@Override
 		public void actionPerformed(ActionEvent e) {
-			Usuarios usuario = new Usuarios();
-			usuario.setNome(txtNome.getText());
-			usuario.setCpf(txtCPF.getText());
-			usuario.setRg(txtRG.getText());
-			usuario.setSaldo(Float.parseFloat(txtSaldo.getText()));
-			usuario.setContaCorrente(txtConta.getText());
-			usuario.setAgencia(txtAgencia.getText());
-			usuario.setBanco(txtBanco.getText());
-			usuario.setCodBanco(Integer.parseInt(txtCodBan.getText()));
-			
-			Endereco endereco = new Endereco();
-			endereco.setCep(txtCep.getText());
-			endereco.setLogradouro(txtLogra.getText());
-			endereco.setBairro(txtBairro.getText());
-			endereco.setNumero(Integer.parseInt(txtNumero.getText()));
-			endereco.setComplemento(txtCompl.getText());
-			
-			usuario.setEnderecos(endereco);
-			
-			
-			
+			try {
+				control.inserir(boundaryToEntity());
+			} catch (SQLException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
 		}
 		
 	}
-	
 }

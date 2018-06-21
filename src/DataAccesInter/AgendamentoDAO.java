@@ -1,4 +1,4 @@
-package DataAccess;
+package DataAccesInter;
 
 public interface AgendamentoDAO {
 	
